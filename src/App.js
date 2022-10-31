@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState, useEffect, useRef } from "react";
+import InputFieald from "./components/InputFieald";
+import uniquid from "uniquid";
+import TodoList from "./components/TodoList";
+import { Data } from "./Data";
 
 function App() {
+  const [todo, setTodo] = useState("");
+  const [todos, setTodos] = useState([]);
+  const RefInput = useRef(null);
+
+  const handleTodos = (todos) => {
+    setTodos(todos);
+  };
+  useEffect(() => {
+    RefInput.current?.focus();
+  }, []);
+  const handleAdd = (e) => {
+    e.preventDefault();
+    if (todo) {
+      setTodos((prevState) => [
+        ...prevState,
+        { id: uniquid(), todo, isDone: false },
+      ]);
+      setTodo("");
+    }
+  };
+  console.log(todos);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="App">
+      <h3>Todo App</h3>
+      <InputFieald todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+      <TodoList todo={todo} todos={todos} setTodos={setTodos} />
+    </main>
   );
 }
 
