@@ -62,11 +62,11 @@ align-items: center;
     background: linear-gradient(0.25turn, #24243e, #9e75759a, #0f0c29);
     width: 90px;
     margin-left:-55px ;
+    z-index: 1;
 }
 
 .form-btn {
     background: #24243e;
-    z-index: 1;
     height: 40px;
     width: 40px;
     border-radius: 10% 50%  ;
@@ -103,12 +103,13 @@ align-items: center;
 
 .form-todo {
     background-color: #513f63;
-    /* background-color: red; */
+    /* background-color: blue; */
 }
 
 .todo-list_task {
     
     background: linear-gradient(0.5turn, #24243e, #9e75759a, #0f0c29);
+    /* background-color: red; */
     opacity: 0.75;
     border-radius: 10px;
     display: flex;
@@ -137,6 +138,8 @@ align-items: center;
     align-items: center;
     transition: all 0.25s;
 }
+
+
 .todo-list_task>div:hover {
     scale: 1.1;
     cursor: pointer;
@@ -180,3 +183,22 @@ align-items: center;
         align-items: center;
         transition: all 0.25s;
 }
+
+.todo-edit {
+        width: 80vw;
+        height: 2.5rem;
+        border-radius: 50rem;
+        border: solid 2px #9e75759a;
+        text-align: center;
+        font-size: 1rem;
+        font-weight: 700;
+        transition: all .5s;
+        box-shadow: 0 0 10px 1000px #24243e;
+        scale: 1.2;
+        z-index: 5;
+    }
+    
+/* .todo-edit:focus{
+    width: 70vw;
+} */
+

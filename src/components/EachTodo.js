@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import uniquid from "uniquid";
 import { Data } from "../Data";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
@@ -28,25 +28,30 @@ const EachTodo = ({ todo, todos, setTodos, id }) => {
     );
     setEdit(false);
   };
+  console.log(edit);
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [edit]);
 
   return (
     <form className="form-todo" onSubmit={(e) => handleEdit(e, todo.id)}>
       {edit ? (
         <input
+          ref={inputRef}
           type="text"
-          value={todo.todo}
+          value={editTodo}
           onChange={(e) => setEditTodo(e.target.value)}
           className="todo-edit"
         />
       ) : todo.isDone ? (
         <ul className=" todo-list_task">
           <div>
-            <s className="todo-list-task-li">{todo.todo}</s>
-            {/* <AiFillDelete
-              className="btn"
-              onClick={() => handleDelete(todo.id)}
-            ></AiFillDelete>
-            <MdDone className="btn" onClick={() => handleDone(todo.id)} /> */}
+            <s className="todo-list-task-li" style={{ color: "red" }}>
+              {todo.todo}
+            </s>
           </div>
         </ul>
       ) : (
@@ -57,14 +62,15 @@ const EachTodo = ({ todo, todos, setTodos, id }) => {
         </ul>
       )}
       <div className="btns">
-        <AiFillDelete
-          className="btn"
-          onClick={() => handleDelete(todo.id)}
-        ></AiFillDelete>
         <AiFillEdit
           className="btn"
-          onClick={(e) => handleEdit(e, todo.id)}
-        ></AiFillEdit>
+          onClick={() => {
+            if (!edit && !todo.isDone) {
+              setEdit(!edit);
+            }
+          }}
+        />
+        <AiFillDelete className="btn" onClick={() => handleDelete(todo.id)} />
         <MdDone className="btn" onClick={() => handleDone(todo.id)} />
       </div>
     </form>
