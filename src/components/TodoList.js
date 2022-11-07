@@ -5,7 +5,9 @@ const TodoList = ({ todo, todos, setTodos }) => {
   return (
     <div className="todo-list">
       <h2>TASKS</h2>
-      <EachTodo todo={todo} todos={todos} setTodos={setTodos} key={todo.id} />
+      {todos.map((todo) => (
+        <EachTodo todo={todo} todos={todos} setTodos={setTodos} key={todo.id} />
+      ))}
     </div>
   );
 };

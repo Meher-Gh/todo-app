@@ -10,9 +10,9 @@ function App() {
   const [todos, setTodos] = useState([]);
   const RefInput = useRef(null);
 
-  const handleTodos = (todos) => {
-    setTodos(todos);
-  };
+  // const handleTodos = (todos) => {
+  //   setTodos(todos);
+  // };
   useEffect(() => {
     RefInput.current?.focus();
   }, []);
