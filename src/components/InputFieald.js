@@ -1,29 +1,31 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
+import styled from "styled-components";
 
 const InputFieald = ({ todo, setTodo, handleAdd }) => {
   const RefInput = useRef(null);
 
   return (
-    <form
-      className="form"
+    <Form
       onSubmit={(e) => {
         handleAdd(e);
-        RefInput.current?.blur();
+        RefInput.current?.focus();
       }}
     >
       <input
-        className="form-input"
         ref={RefInput}
         type="input"
-        placeholder="type your task..."
+        placeholder=" type your task..."
         value={todo}
         onChange={(e) => setTodo(e.target.value)}
       />
-      <button className="form-btn" type="submit">
-        GO
-      </button>
-    </form>
+    </Form>
   );
 };
 
+const Form = styled.form`
+  input {
+    height: 2rem;
+    border-radius: 5px;
+  }
+`;
 export default InputFieald;
