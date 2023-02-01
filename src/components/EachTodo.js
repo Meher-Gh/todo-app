@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import uniquid from "uniquid";
-import { Data } from "../Data";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 
